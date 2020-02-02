@@ -1,0 +1,15 @@
+body {
+    position: relative;
+    padding-top: 80px;
+}
+
+.color2rows tr:nth-child(4n+1), .color2rows tr:nth-child(4n+2) {
+    background: darkolivegreen;
+}
+
+.table tbody tr:nth-child(4n+1), .table tbody tr:nth-child(4n+2) {
+    background: lightgrey;
+}
+
+#bt_scroll_edit {display: inline-block}
+#bt_scroll_delete {display: inline-block}
