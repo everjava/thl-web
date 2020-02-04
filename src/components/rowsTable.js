@@ -41,7 +41,11 @@ class RowsTable extends Component {
         const STYLES = {
             edit: {
                 display: 'inline-block'
+            },
+            columnsize: {
+                width: '16.66%'
             }
+
         };
 
         return (
@@ -66,21 +70,26 @@ class RowsTable extends Component {
                     <td rowSpan="2"
                         className="align-middle">{numeral(scrollResult).format('0.00')} | {numeral(retorno).format('0.00')}</td>
                     {/* edit */}
-                    <td rowSpan="2" className="align-bottom"  style={{display : showEdit}}>
-                        <button className="btn btn-sm btn-danger" type="button" style={{display : showEdit}}
-                                onClick={this.deleteScroll.bind(this, scroll.scrollNumber, strategy.id)}>
-                            <Tooltip title="Deleta rolagem">
-                                <RemoveCircleOutline fontSize="small"/>
-                            </Tooltip>
-                        </button>
+                    {(showEdit === 'inline') ? (
+                        <td rowSpan="2" className="align-bottom">
+                            <button className="btn btn-sm btn-danger" type="button"
+                                    onClick={this.deleteScroll.bind(this, scroll.scrollNumber, strategy.id)}>
+                                <Tooltip title="Deleta rolagem">
+                                    <RemoveCircleOutline fontSize="small"/>
+                                </Tooltip>
+                            </button>
 
-                        <button className="btn btn-sm btn-info" type="button" style={{display : showEdit}}
-                                onClick={this.getScroll.bind(this, scroll.scrollNumber, strategy.id)}>
-                            <Tooltip title="Editar rolagem">
-                                <EditIcon fontSize="small"/>
-                            </Tooltip>
-                        </button>
-                    </td>
+                            <button className="btn btn-sm btn-info" type="button"
+                                    onClick={this.getScroll.bind(this, scroll.scrollNumber, strategy.id)}>
+                                <Tooltip title="Editar rolagem">
+                                    <EditIcon fontSize="small"/>
+                                </Tooltip>
+                            </button>
+                        </td>
+                    ) : (
+                        <span/>
+                    )}
+
 
                 </tr>
                 <tr>
