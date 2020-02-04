@@ -85,6 +85,12 @@ class ListStrategyScrolls extends Component {
             scrolls = this.state.scrollList;
         }
 
+        const STYLES = {
+            columnSize: {
+                width: '5%'
+            }
+        };
+
         return (
             <div className="container">
                 <div className="content" id="mission">
@@ -98,9 +104,10 @@ class ListStrategyScrolls extends Component {
                     </nav>
                     <br/>
 
-                    <table className="table color2rows  table-responsive   " border="4">
+                    <table className="table color2rows  table-responsive">
                         <thead>
                         <tr>
+                            <th scope="col">#</th>
                             <th scope="col">Opção</th>
                             <th scope="col">C/V</th>
                             <th scope="col">Strike</th>
@@ -110,7 +117,7 @@ class ListStrategyScrolls extends Component {
                             <th scope="col">Total</th>
                             <th scope="col">Spread</th>
                             <th scope="col">Resultado</th>
-                            <th scope="col">Rentabilidade</th>
+                            <th scope="col" style={STYLES.columnSize}>Rentabilidade</th>
                             <th scope="col">Retorno</th>
 
                         </tr>
@@ -121,7 +128,7 @@ class ListStrategyScrolls extends Component {
                     </table>
 
 
-                    <table className="table border table-responsive" border="4">
+                    <table className="table border table-responsive">
                         <thead>
                         <tr>
                             <th scope="col">#</th>
