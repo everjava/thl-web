@@ -117,7 +117,7 @@ class ListStrategyScrolls extends Component {
                             <th scope="col">Total</th>
                             <th scope="col">Spread</th>
                             <th scope="col">Resultado</th>
-                            <th scope="col" style={STYLES.columnSize}>Rentabilidade</th>
+                            <th scope="col" style={STYLES.columnSize}>Lucro</th>
                             <th scope="col">Retorno</th>
 
                         </tr>
@@ -142,7 +142,7 @@ class ListStrategyScrolls extends Component {
 
                             <th scope="col">Spread</th>
                             <th scope="col">Resultado</th>
-                            <th scope="col">Rentabilidade</th>
+                            <th scope="col" style={STYLES.columnSize}>Lucro</th>
                             <th scope="col">Retorno</th>
                         </tr>
                         </thead>

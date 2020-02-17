@@ -33,8 +33,18 @@ export const createStrategy = (strategy, history) => async dispatch => {
     try {
         await axios.post("http://localhost:8080/api/strategy/save/", strategy);
         history.push("/listStrategy");
+
+        dispatch({
+            type: GET_ERRORS,
+            payload: {}
+        });
     } catch (e) {
         console.log('ERRO INSERT = ' + e);
+
+        dispatch({
+            type: GET_ERRORS,
+            payload: e.response.data
+        });
     }
 };
 

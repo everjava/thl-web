@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {createScroll, getScroll,updateScroll} from "../actions/scrollAction";
+import {createScroll, getScroll, updateScroll} from "../actions/scrollAction";
 import {getStrategy} from "../actions/strategyAction";
+import moment from 'moment'
 
 class UpdateScroll extends Component {
 
@@ -207,8 +208,9 @@ class UpdateScroll extends Component {
 
                             <div className="form-group col">
                                 <label className="col-form-label sr-only" htmlFor="shortDate">shortdata</label>
-                                <input className="form-control"
-                                       value={this.state.shortDate} onChange={this.onChange}
+                                <input className="form-control" data-date="" data-date-format="DD-MM-YYYY"
+                                       value={this.state.shortDate}
+                                       onChange={this.onChange}
                                        type="text" name="shortDate" placeholder="data"/>
                             </div>
 
@@ -257,4 +259,4 @@ const mapStateToProps = state => ({
     scroll: state.scroll.scroll
 });
 
-export default connect(mapStateToProps, {getStrategy, createScroll,updateScroll, getScroll})(UpdateScroll);
+export default connect(mapStateToProps, {getStrategy, createScroll, updateScroll, getScroll})(UpdateScroll);

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {createStrategy, getStrategy} from "../actions/strategyAction";
+import classnames  from "classnames";
 
 class EditStrategy extends Component {
 
@@ -20,7 +21,8 @@ class EditStrategy extends Component {
             shortDate: "",
             shortPrice: "",
             shortQuantity: "",
-            shortExpireDateOption: ""
+            shortExpireDateOption: "",
+            errors: {}
         };
 
         this.onChange = this.onChange.bind(this);
@@ -29,9 +31,14 @@ class EditStrategy extends Component {
 
     componentDidMount() {
         const {id} = this.props.match.params;
-        this.props.getStrategy(id);
+       // this.props.getStrategy(id);
+    }
 
-        console.log(this.state.strategy)
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.errors) {
+            console.log(nextProps.errors+'  ssss');
+            this.setState({ errors: nextProps.errors });
+        }
     }
 
     onChange(e) {
@@ -65,6 +72,8 @@ class EditStrategy extends Component {
     }
 
     render() {
+        const { errors } = this.state;
+
         return (
             <div className="container">
                 <br/>
@@ -83,7 +92,8 @@ class EditStrategy extends Component {
                         <div className="form-group form-row">
                             <div className="form-group offset-md-2 col">
                                 <label className="col-form-label sr-only" htmlFor="name">Nome</label>
-                                <input className="form-control"
+                                <input className={classnames("form-control form-control-md", {
+                                    "is-invalid": errors.name })}
                                        value={this.state.name} onChange={this.onChange}
                                        type="text" name="name" placeholder="Nome"/>
                             </div>
@@ -219,7 +229,8 @@ class EditStrategy extends Component {
 }
 
 const mapStateToProps = state => ({
-    strategy: state.strategy
+    strategy: state.strategy,
+    errors: state.errors
 });
 
 export default connect(mapStateToProps, {createStrategy, getStrategy})(EditStrategy);

@@ -242,14 +242,13 @@ class UpdateStrategy extends Component {
 
                         </div>
 
-                        <div className="form-group row">
-
+                        <div className="form-group row"  title="checkbox example" style={{display: 'none'}}>
                             <div className="offset-md-2 col-auto">
                                 <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
                                 <label className="form-check-label" htmlFor="exampleCheck1">xxxx</label>
                             </div>
-
                         </div>
+
                         <div className="form-group row">
                             <div className="offset-md-2 col-auto">
                                 <button className="btn btn-primary" type="submit">Submit</button>

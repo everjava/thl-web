@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import moment from 'moment';
+//import moment from 'moment';
 import numeral from 'numeral'
 import Tooltip from "@material-ui/core/Tooltip";
 import RemoveCircleOutline from '@material-ui/icons/RemoveCircleOutline';
@@ -55,7 +55,8 @@ class RowsTable extends Component {
                     <td>{scroll.longOption}</td>
                     <td>compra</td>
                     <td>{scroll.longStrike}</td>
-                    <td>{moment(scroll.longDate).format('DD/MM/YYYY')}</td>
+                  {/*  <td>{moment(scroll.longDate).format('DD/MM/YYYY')}</td>*/}
+                    <td>{scroll.longDate}</td>
                     <td>{scroll.longQuantity}</td>
                     <td>${scroll.longPrice}</td>
                     <td>${scroll.longQuantity * scroll.longPrice}</td>
@@ -71,7 +72,7 @@ class RowsTable extends Component {
                         className="align-middle">{numeral(scrollResult).format('0.00')} | {numeral(retorno).format('0.00')}</td>
                     {/* edit */}
                     {(showEdit === 'inline') ? (
-                        <td rowSpan="2" className="align-bottom">
+                        <td rowSpan="2" className="align-middle">
                             <button className="btn btn-sm btn-danger" type="button"
                                     onClick={this.deleteScroll.bind(this, scroll.scrollNumber, strategy.id)}>
                                 <Tooltip title="Deleta rolagem">
@@ -87,7 +88,7 @@ class RowsTable extends Component {
                             </button>
                         </td>
                     ) : (
-                        <span/>
+                        <span title="blank space for the starter strategy" />
                     )}
 
 
@@ -97,11 +98,11 @@ class RowsTable extends Component {
                     <td>{scroll.shortOption}</td>
                     <td>venda</td>
                     <td>{scroll.shortStrike}</td>
-                    <td>{moment(scroll.shortDate).format('DD/MM/YYYY')}</td>
+                    <td>{scroll.shortDate}</td>
                     <td>{scroll.shortQuantity}</td>
                     <td>${scroll.shortPrice}</td>
                     <td>${scroll.shortQuantity * scroll.shortPrice}</td>
-                    {/* start merge */}
+                    {/* start merge columns */}
 
                 </tr>
             </React.Fragment>
