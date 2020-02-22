@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {createStrategy, getStrategy} from "../actions/strategyAction";
-import classnames  from "classnames";
+import classnames from "classnames";
 
 class EditStrategy extends Component {
 
@@ -31,13 +31,13 @@ class EditStrategy extends Component {
 
     componentDidMount() {
         const {id} = this.props.match.params;
-       // this.props.getStrategy(id);
+        // this.props.getStrategy(id);
     }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
-            console.log(nextProps.errors+'  ssss');
-            this.setState({ errors: nextProps.errors });
+            console.log(nextProps.errors + '  ssss');
+            this.setState({errors: nextProps.errors});
         }
     }
 
@@ -72,7 +72,7 @@ class EditStrategy extends Component {
     }
 
     render() {
-        const { errors } = this.state;
+        const {errors} = this.state;
 
         return (
             <div className="container">
@@ -93,7 +93,8 @@ class EditStrategy extends Component {
                             <div className="form-group offset-md-2 col">
                                 <label className="col-form-label sr-only" htmlFor="name">Nome</label>
                                 <input className={classnames("form-control form-control-md", {
-                                    "is-invalid": errors.name })}
+                                    "is-invalid": errors.name
+                                })}
                                        value={this.state.name} onChange={this.onChange}
                                        type="text" name="name" placeholder="Nome"/>
                             </div>
@@ -103,17 +104,14 @@ class EditStrategy extends Component {
                                     className="form-control form-control-md"
                                     name="optionType"
                                     value={this.state.optionType}
-                                    onChange={this.onChange}
-                                >
+                                    onChange={this.onChange}>
+
                                     <option value="X">Tipo</option>
                                     <option value="CALL">CALL</option>
                                     <option value="PUT">PUT</option>
                                 </select>
-
                             </div>
-
                         </div>
-
                     </fieldset>
 
                     <fieldset className="form-group">
@@ -154,9 +152,7 @@ class EditStrategy extends Component {
                                        value={this.state.longPrice} onChange={this.onChange}
                                        type="text" name="longPrice" placeholder="valor"/>
                             </div>
-
                         </div>
-
                     </fieldset>
 
                     <fieldset className="form-group">
@@ -204,7 +200,6 @@ class EditStrategy extends Component {
                         </div>
 
                         <div className="form-group row">
-
                             <div className="offset-md-2 col-auto">
                                 <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
                                 <label className="form-check-label" htmlFor="exampleCheck1">xxxx</label>
@@ -221,10 +216,8 @@ class EditStrategy extends Component {
 
 
                 </form>
-
             </div>
-        )
-            ;
+        );
     }
 }
 
