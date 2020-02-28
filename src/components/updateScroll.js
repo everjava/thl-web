@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {createScroll, getScroll, updateScroll} from "../actions/scrollAction";
 import {getStrategy} from "../actions/strategyAction";
-import moment from 'moment'
+import _ from 'lodash'
 
 class UpdateScroll extends Component {
 
@@ -28,7 +28,15 @@ class UpdateScroll extends Component {
                 shortDate: "",
                 shortPrice: "",
                 shortQuantity: "",
-                shortExpireDateOption: ""
+                shortExpireDateOption: "",
+                hedgeOption: "",
+                hedgeStrike: "",
+                hedgeDate: "",
+                hedgePrice: "",
+                hedgeQuantity: "",
+                hedgeExpireDateOption: "",
+                hedgeOptionType: "",
+                hedge: {}
             };
 
         this.onChange = this.onChange.bind(this);
@@ -37,6 +45,11 @@ class UpdateScroll extends Component {
 
     onChange(e) {
         this.setState({[e.target.name]: e.target.value});
+        let name =e.target.name;
+        let value =e.target.value;
+        let nestedJson = this.state.hedge;
+        nestedJson = _.set(nestedJson, name, value);
+        this.setState({nestedJson})
     }
 
     onSubmit(e) {
@@ -58,7 +71,16 @@ class UpdateScroll extends Component {
             shortDate: this.state.shortDate,
             shortPrice: this.state.shortPrice,
             shortQuantity: this.state.shortQuantity,
-            shortExpireDateOption: this.state.shortExpireDateOption
+            shortExpireDateOption: this.state.shortExpireDateOption,
+            hedge: {
+                option: this.state.hedge.option,
+                strike: this.state.hedge.strike,
+                date: this.state.hedge.date,
+                price: this.state.hedge.price,
+                quantity: this.state.hedge.quantity,
+                expireDateOption: this.state.hedge.expireDateOption,
+                optionType: this.state.hedge.optionType
+            }
         };
         this.props.updateScroll(scroll, this.state.strategy.id, this.props.history);
     }
@@ -68,6 +90,7 @@ class UpdateScroll extends Component {
         const {scrollNumber} = this.props.match.params;
         this.props.getScroll(scrollNumber, idStrategy, this.props.history);
         this.props.getStrategy(idStrategy, this.props.history);//vai no backend
+        console.log('componentDidMount');
     }
 
     /**
@@ -75,8 +98,9 @@ class UpdateScroll extends Component {
      * @param nextProps
      */
     componentWillReceiveProps(nextProps) {
+        console.log('componentWillReceiveProps');
         const strategy = nextProps.strategy;
-
+        const hedge = nextProps.scroll.hedge ?  nextProps.scroll.hedge : '';
         const {
             scrollNumber,
             optionType,
@@ -114,10 +138,18 @@ class UpdateScroll extends Component {
             shortPrice,
             shortQuantity,
             shortExpireDateOption
+            , hedge
         });
     }
 
     render() {
+
+        console.log(this.state.hedge);
+
+        if (!this.state.longOption ) {
+            return null;
+        }
+
         return (
             <div className="container">
                 <br/>
@@ -248,6 +280,75 @@ class UpdateScroll extends Component {
                         </div>
 
                     </fieldset>
+
+
+                    <fieldset className="form-group">
+                        <legend>Defesa</legend>
+
+                        <div className="form-group form-row">
+
+                            <div className="form-group offset-md-2 col">
+                                <label className="col-form-label sr-only" htmlFor="option">Opçao</label>
+                                <input className="form-control"
+                                       value={this.state.hedge.option} onChange={this.onChange}
+                                       type="text" name="option" placeholder="opcao"/>
+                            </div>
+
+                            <div className="form-group  col">
+                                <select
+                                    className="form-control "
+                                    name="optionType"
+                                    value={this.state.hedge.optionType}
+                                    onChange={this.onChange}>
+
+                                    <option value="X">Tipo</option>
+                                    <option value="CALL">CALL</option>
+                                    <option value="PUT">PUT</option>
+                                </select>
+                            </div>
+
+                            <div className="form-group col">
+                                <label className="col-form-label sr-only" htmlFor="strike">strike</label>
+                                <input className="form-control"
+                                       value={this.state.hedge.strike} onChange={this.onChange}
+                                       type="text" name="strike" placeholder="strike"/>
+                            </div>
+
+                            <div className="form-group col">
+                                <label className="col-form-label sr-only" htmlFor="date">shortdata</label>
+                                <input className="form-control"
+                                       value={this.state.hedge.date} onChange={this.onChange}
+                                       type="text" name="date" placeholder="data"/>
+                            </div>
+
+
+                            <div className="form-group col">
+                                <label className="col-form-label sr-only" htmlFor="quantity">quantidade</label>
+                                <input className="form-control"
+                                       value={this.state.hedge.quantity} onChange={this.onChange}
+                                       type="text" name="quantity" placeholder="quantidade"/>
+                            </div>
+
+
+                            <div className="form-group col">
+                                <label className="col-form-label sr-only" htmlFor="price">shortvalor</label>
+                                <input className="form-control"
+                                       value={this.state.hedge.price} onChange={this.onChange}
+                                       type="text" name="price" placeholder="valor"/>
+                            </div>
+
+                        </div>
+
+
+                        <div className="form-group row">
+                            <div className="offset-md-2 col-auto">
+                                <button className="btn btn-primary" type="submit">Submit</button>
+                            </div>
+                        </div>
+
+                    </fieldset>
+
+
                 </form>
             </div>
         );
@@ -257,6 +358,7 @@ class UpdateScroll extends Component {
 const mapStateToProps = state => ({
     strategy: state.strategy.strategy,
     scroll: state.scroll.scroll
+    , hedge: state.scroll.hedge
 });
 
 export default connect(mapStateToProps, {getStrategy, createScroll, updateScroll, getScroll})(UpdateScroll);
