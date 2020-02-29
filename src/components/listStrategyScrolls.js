@@ -123,7 +123,7 @@ class ListStrategyScrolls extends Component {
                         </tr>
                         </thead>
                         <tbody>
-                        <RowsTable scroll={strategy} strategy={strategy} showEdit='none'/>
+                        <RowsTable scroll={strategy} strategy={strategy} showEdit='none' firstPosition={true}/>
                         </tbody>
                     </table>
 
@@ -149,7 +149,11 @@ class ListStrategyScrolls extends Component {
                         <tbody>
                         {
                             scrolls.map(st => (
-                                <RowsTable key={st.scrollNumber} scroll={st} strategy={strategy} showEdit='inline'/>
+                                <RowsTable key={st.scrollNumber}
+                                           scroll={st}
+                                           strategy={strategy}
+                                           showEdit='inline'
+                                           firstPosition={false}/>
                             ))
                         }
                         </tbody>
