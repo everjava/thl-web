@@ -6,7 +6,7 @@ import errorReducer from "./errorReducer";
 
 
 export default combineReducers({
-    hedge: hedgeReducer,
+   // hedge: hedgeReducer,
     scroll: scrollReducer,
     strategy: strategyReducer,
     errors: errorReducer

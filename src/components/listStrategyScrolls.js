@@ -3,6 +3,7 @@ import '../css/main.css'
 import {getStrategy} from "../actions/strategyAction";
 import {connect} from "react-redux";
 import RowsTable from './rowsTable'
+import WarningIcon from '@material-ui/icons/Warning';
 
 
 class ListStrategyScrolls extends Component {

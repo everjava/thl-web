@@ -27,7 +27,14 @@ class EditScroll extends Component {
                 shortDate: "",
                 shortPrice: "",
                 shortQuantity: "",
-                shortExpireDateOption: ""
+                shortExpireDateOption: "",
+                hedgeOption: "",
+                hedgeStrike: "",
+                hedgeDate: "",
+                hedgePrice: "",
+                hedgeQuantity: "",
+                hedgeExpireDateOption: "",
+                hedgeOptionType: ""
             };
 
         this.onChange = this.onChange.bind(this);
@@ -57,7 +64,16 @@ class EditScroll extends Component {
             shortDate: this.state.shortDate,
             shortPrice: this.state.shortPrice,
             shortQuantity: this.state.shortQuantity,
-            shortExpireDateOption: this.state.shortExpireDateOption
+            shortExpireDateOption: this.state.shortExpireDateOption,
+            hedge: {
+                option: this.state.hedgeOption,
+                strike: this.state.hedgeStrike,
+                date: this.state.hedgeDate,
+                price: this.state.hedgePrice,
+                quantity: this.state.hedgeQuantity,
+                expireDateOption: this.state.hedgeExpireDateOption,
+                optionType: this.state.hedgeOptionType
+            }
         };
         console.log('submit = ' + scroll);
         console.log('this.state.idStrategy = ' + this.state.idStrategy);
@@ -192,14 +208,13 @@ class EditScroll extends Component {
                                        type="text" name="shortPrice" placeholder="valor"/>
                             </div>
 
-
                         </div>
 
                         <div className="form-group row">
 
                             <div className="offset-md-2 col-auto">
                                 <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
-                                <label className="form-check-label" htmlFor="exampleCheck1">xxxx</label>
+                                <label className="form-check-label" htmlFor="exampleCheck1">Ativar defesa</label>
                             </div>
 
                         </div>
@@ -210,6 +225,75 @@ class EditScroll extends Component {
                         </div>
 
                     </fieldset>
+
+                    {/* adicionar um combo com opcoes de defesa e exibir para preenchimento */}
+                    <fieldset className="form-group">
+                        <legend>Defesa</legend>
+
+                        <div className="form-group form-row">
+
+                            <div className="form-group offset-md-2 col">
+                                <label className="col-form-label sr-only" htmlFor="hedgeOption">Opçao</label>
+                                <input className="form-control"
+                                       value={this.state.hedgeOption} onChange={this.onChange}
+                                       type="text" name="hedgeOption" placeholder="opcao"/>
+                            </div>
+
+                            <div className="form-group  col">
+                                <select
+                                    className="form-control "
+                                    name="hedgeOptionType"
+                                    value={this.state.hedgeOptionType}
+                                    onChange={this.onChange}>
+
+                                    <option value="X">Tipo</option>
+                                    <option value="CALL">CALL</option>
+                                    <option value="PUT">PUT</option>
+                                </select>
+                            </div>
+
+                            <div className="form-group col">
+                                <label className="col-form-label sr-only" htmlFor="hedgeStrike">strike</label>
+                                <input className="form-control"
+                                       value={this.state.hedgeStrike} onChange={this.onChange}
+                                       type="text" name="hedgeStrike" placeholder="strike"/>
+                            </div>
+
+                            <div className="form-group col">
+                                <label className="col-form-label sr-only" htmlFor="hedgeDate">shortdata</label>
+                                <input className="form-control"
+                                       value={this.state.hedgeDate} onChange={this.onChange}
+                                       type="text" name="hedgeDate" placeholder="data"/>
+                            </div>
+
+
+                            <div className="form-group col">
+                                <label className="col-form-label sr-only" htmlFor="hedgeQuantity">quantidade</label>
+                                <input className="form-control"
+                                       value={this.state.hedgeQuantity} onChange={this.onChange}
+                                       type="text" name="hedgeQuantity" placeholder="quantidade"/>
+                            </div>
+
+
+                            <div className="form-group col">
+                                <label className="col-form-label sr-only" htmlFor="hedgePrice">shortvalor</label>
+                                <input className="form-control"
+                                       value={this.state.hedgePrice} onChange={this.onChange}
+                                       type="text" name="hedgePrice" placeholder="valor"/>
+                            </div>
+
+                        </div>
+
+
+                        <div className="form-group row">
+                            <div className="offset-md-2 col-auto">
+                                <button className="btn btn-primary" type="submit">Submit</button>
+                            </div>
+                        </div>
+
+                    </fieldset>
+
+
                 </form>
             </div>
         );

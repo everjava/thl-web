@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import moment from 'moment';
 import numeral from 'numeral'
 
+/**
+ * @deprecated
+ */
 class TableRow extends Component {
 
     constructor(props) {
@@ -32,7 +35,7 @@ class TableRow extends Component {
         if (this.props && this.props.scroll.scrollNumber) {
 
             totalStrategy = (strategy.longPosition.valor - strategy.shortPosition.valor) * strategy.shortPosition.qtde;
-            rolagem = scroll.trades[1].valor - scroll.trades[0].valor;
+            rolagem = strategy.longPrice - strategy.shortPrice;
             scrollResult = rolagem * scroll.trades[0].qtde;
             rentabilidade = ((rolagem * scroll.trades[0].qtde) / totalStrategy);
             TableRow.sumResults += scrollResult;
