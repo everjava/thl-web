@@ -4,6 +4,8 @@ import numeral from 'numeral'
 import Tooltip from "@material-ui/core/Tooltip";
 import RemoveCircleOutline from '@material-ui/icons/RemoveCircleOutline';
 import WarningIcon from '@material-ui/icons/Warning';
+import ReportProblemIcon from '@material-ui/icons/ReportProblem';
+import WarningOutlinedIcon from '@material-ui/icons/WarningOutlined';
 import EditIcon from '@material-ui/icons/Edit';
 import {deleteScroll, getScroll} from "../actions/scrollAction";
 import {connect} from "react-redux";
@@ -93,7 +95,13 @@ class RowsTable extends Component {
                     {/* Rolagem */}
                     <td rowSpan="2" className="align-middle">{numeral(spread).format('0.00')}</td>
                     {/* Resultado */}
-                    <td rowSpan="2" className="align-middle">{numeral(scrollResult).format('0.00')}</td>
+                    <td rowSpan="2" className="align-middle">{numeral(scrollResult).format('0.00')}
+                        {(scroll.hedge) ? (
+                            <WarningOutlinedIcon
+                            fontSize="default"
+                            color="action"
+                            titleAccess="Rolagem negativa com defesa"  />) : (null)  }
+                    </td>
                     {/* Rentabilidade % */}
                     <td rowSpan="2" className="align-middle">{numeral(rentabilidade).format('0.00%')}</td>
                     {/* Retorno */}
