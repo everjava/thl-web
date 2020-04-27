@@ -3,6 +3,7 @@ import {Redirect, Route} from "react-router-dom";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 
+//https://medium.com/better-programming/building-basic-react-authentication-e20a574d5e71
 const SecuredRoute = ({component: Component, security, ...otherProps}) => (
     <Route
         {...otherProps}

@@ -71,7 +71,7 @@ class Login extends Component {
                                className={classnames("form-control form-control-md", {"is-invalid": errors.password})}
                                placeholder="Senha" required
                                value={this.state.password} onChange={this.onChange}/>
-                        {errors.username && (
+                        {errors.password && (
                             <div className="invalid-feedback">{errors.password}</div>
                         )}
 

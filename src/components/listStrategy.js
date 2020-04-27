@@ -38,6 +38,11 @@ class ListStrategy extends Component {
 
     render() {
 
+        const {validToken, user} = this.props.security;
+        if (!validToken && !user) {
+            window.location.href = "/login";
+        }
+
         const {strategyList} = this.props.strategy;
 
         return (
@@ -123,7 +128,8 @@ class ListStrategy extends Component {
 }
 
 const mapStateToProps = state => ({
-    strategy: state.strategy
+    strategy: state.strategy,
+    security: state.security
 
 });
 export default connect(mapStateToProps, {getStrategyList, deleteStrategy})(ListStrategy);

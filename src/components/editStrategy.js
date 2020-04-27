@@ -97,6 +97,9 @@ class EditStrategy extends Component {
                                 })}
                                        value={this.state.name} onChange={this.onChange}
                                        type="text" name="name" placeholder="Nome"/>
+                                {errors.name && (
+                                    <div className="invalid-feedback">{errors.name}</div>
+                                )}
                             </div>
 
                             <div className="form-group col">
