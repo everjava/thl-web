@@ -14,15 +14,12 @@ class Menu extends Component {
         const {validToken, user} = this.props.security;
 
         const isUserAuthenticated = (
-
             <div className="container">
                 <ul className="navbar-nav">
                     <li className="nav-item"><a className="nav-link" href="/listStrategy">Estrategias</a></li>
                     <li className="nav-item"><a className="nav-link" href="/editStrategy">Cadastro</a></li>
-
                     <li className="nav-item"><a className="nav-link" href="/login">Login</a></li>
                     <li className="nav-item"><a className="nav-link" href="/register">Register</a></li>
-
                     <li className="nav-item">
                         <Link className="nav-link" to="/logout" onClick={this.logout.bind(this)}>
                             Logout
