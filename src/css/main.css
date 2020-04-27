@@ -11,5 +11,10 @@ body {
     background: lightgrey;
 }
 
-#bt_scroll_edit {display: inline-block}
-#bt_scroll_delete {display: inline-block}
+#bt_scroll_edit {
+    display: inline-block
+}
+
+#bt_scroll_delete {
+    display: inline-block
+}
